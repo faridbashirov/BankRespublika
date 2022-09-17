@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{%block css%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/news.css') }}" />
+{%endblock%}
+{% block content %}
+<div class="body">
+
+  <div class="container">
+    <h3>Xəbərlər</h3>
+    {%for news in news%}
+    <div class="card mb-3">
+      <p style="    position: absolute;
+      right: 7px;
+      top: 14px;
+      color: gray;">{{news.created_At}}</p>
+      <div class="row g-0">
+        <div class="col-md-3">
+          <img src="{{news.url}}" class="img-fluid " alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <a href="news/{{news.title}}">
+              <h5 class="card-title">{{news.title}}</h5>
+            </a>
+            {% if news.description%}
+            <p class="card-text">{{news.description}}</p>
+            {% else %}
+            <p></p>
+            
+            {% endif%}
+
+          </div>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock%}
+{%block js%}
+
+{%endblock%}

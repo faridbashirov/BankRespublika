@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% from "_formhelpers.html" import render_field %}
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cartoffer.css') }}"/>
+
+{% endblock %}
+ {% block content %}
+ <div class="container">
+    <h3 style="margin-bottom: 40px;">Öz kartını onlayn sifariş et</h3>
+    <div class="offerform">
+    <form action="" method="POST">
+        {{form.csrf_token}}
+        <div id="step1" style="display: block;">
+            <div class="stepoffer">
+                <div>
+                    <span style="color: #3939ff;">1</span>
+                    <h6 style="font-weight: 400;">Kart məlumatları</h6>
+                    </div>
+                    <div>
+                        <span>2</span>
+                        <h6>Şəxsi və ödəniş məlumatları</h6>
+                    </div>
+                    <div>
+                        <span>3</span>
+                        <h6>SMS Təsdiq</h6>
+                </div>
+            </div>   
+            <div class="cartselect">  
+                <div class="left">
+                    <h6 class="">Kartı əlavə et</h6>
+                    {{ render_field(form.kart) }}
+                    <h6>Kartın müddəti</h6>
+                    {{ render_field(form.muddet) }}
+                </div>
+                <div class="right">
+                    <h6>Kartın valyutasını seç</h6>
+                    {{ render_field(form.valyuta) }}
+                    <h6>Kartın hazırlama müddətini seçin</h6>
+                    {{ render_field(form.hazirlanma) }}
+                </div> 
+                <div>
+                    <div class="img">
+                        <!-- js img -->
+                    </div>   
+                    <p style="text-align:center;  color: #3939ff; padding: 10px; font-size: 12px;">Kartın təsviri</p>
+                </div>
+            </div>     
+            <div class="bottomoffer">
+                <div class="leftbottom">
+                    <h6 style="font-size:15px; font-weight:300;">Əlavə xidmətlər</h6>
+                    <div style="display: flex; align-items:center;    box-shadow: 5px 12px 16px 5px rgba(0, 0, 0, 0.082); width: 300px; border-radius: 24px; padding: 15px 20px;"><input type="checkbox" style="width: 20px; height:20px; ">SMS xəbərdarlıq (0.99 AZN aylıq)</div>
+                </div>
+                <div class="rightbottom">
+                    <div style="display:flex; flex-direction:column">
+                        <h6>Kartı necə əldə etmək istəyirsiz?</h6>
+                        <select>
+                            <option>Filialdan</option>
+                        </select>
+                            {{ render_field(form.filial) }}
+                    </div>
+                    <div>
+                        <h6>Kartın buraxılma haqqı</h6>
+                        <select>
+                            <option>Kartın pulunu ödəməklə</option>
+                        </select>
+                    </div>
+                </div> 
+            </div>
+            
+        </div>  
+        <div  id="step2" style="display: none;">
+            <div class="stepoffer">
+                <div>
+                    <span><i style="color: #439e5ae5;" class="fa-solid fa-check"></i></span>
+                    <h6>Kart məlumatları</h6>
+                    </div>
+                    <div>
+                        <span style="color: #3939ff;">2</span>
+                        <h6 style="font-weight: 400;">Şəxsi və ödəniş məlumatları</h6>
+                    </div>
+                    <div>
+                        <span>3</span>
+                        <h6>SMS Təsdiq</h6>
+                </div>
+            </div>   
+            <div class="personal">
+                <div class="sol">
+                    <h6>Tam adı daxil edin</h6>
+                    {{render_field(form.ad)}}
+                    {{render_field(form.soyad)}}
+                    {{render_field(form.ataadi)}}
+                </div>
+                <div class="sag">
+                    <h6>FİN kodunuz</h6>
+                    {{render_field(form.fin)}}
+                    <h6>Məxfi söz</h6>
+                    {{render_field(form.mexfisoz)}}
+                </div>
+            </div>
+            <div class="contact">
+                <div>
+                    <h6>Mobil nömrəniz</h6>
+                    {{render_field(form.nomre)}}
+                </div>
+                <div>            
+                    <h6>E-mail ünvanınız</h6>
+                    {{render_field(form.mail)}}
+                </div>
+   
+            </div>
+            
+        </div>
+        <div style="position: relative;"><input style="display: none;" id="submit" type="submit"></div>
+
+    </form>
+    <div style="position: relative;padding-bottom: 20px;"><button id="geriye" style="display: none;">Geriye</button> <button id="novbeti" >Növbəti</button></div>
+    </div> 
+</div>      
+
+<div style="display: none;">
+    {% for cart in carts %}
+        <span><span class="imgtitle">{{cart.title}}</span> <span>{{cart.img}}</span></span>
+    {% endfor %}    
+</div>
+
+
+<script src="{{ url_for('static', filename='js/cartoffer.js') }}"></script>
+ {% endblock %}
+ {% block js %}
+
+ {% endblock %}

@@ -1,0 +1,112 @@
+.main{
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+.main{
+   
+    height: 493px;
+    border-radius: 10px;
+    background: white;
+    position: absolute;
+    top: 118px;
+    right: 10px;
+    left: 10px;
+    
+}
+.body{
+    background-color:#FAFAFC ;
+    height: 700px;
+    position: relative;
+}
+input{
+    height: 46px;
+    border: none;
+    border: 0 !important;
+    box-shadow:3px 0px 41px rgb(185 187 197 / 20%);;
+    
+}
+input:focus{
+    outline: none !important;
+    /* box-shadow: none !important; */
+    
+}
+.capc{
+    width: 200px;
+}
+
+.sened{
+ 
+    border: 0;
+    /* outline: 0; */
+    /* outline: none !important; */
+    box-shadow: none;
+    width: 80%;
+    outline: none !important;
+}
+.sened:focus{
+    outline: none !important;
+    box-shadow: none;
+
+}
+.seriya{
+    width: 13%;
+    border: 0;
+    /* outline: 0; */
+    /* outline: none !important; */
+    box-shadow: none;
+    
+    outline: none !important;
+
+}
+.c{
+    border: 1px solid #ced4da;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow:3px 0px 41px rgb(185 187 197 / 20%);;
+    border: none;
+}
+.c li{
+    display: flex;
+    align-items: center;
+    
+}
+.c ul{
+    padding: 0;
+    margin: 0;
+}
+.c input{
+    margin-right: 7px;
+}
+.captcha{
+    width: 167px;
+    height: 53px;
+    background-image: url(https://codingnepalweb.com/demos/custom-captcha-in-javascript/captcha-bg.png);
+   
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 36px;
+    top: 31px;
+}
+.reload-btn{
+    border: 0;
+    position: absolute;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: #485DC6;
+    right: -25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    /* flex-direction: column; */
+    color: white;
+}
+.reload-btn:hover{
+    color: white;
+}

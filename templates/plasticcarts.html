@@ -1,0 +1,211 @@
+       
+
+
+
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/plasticcarts.css') }}"/>
+{% endblock %}
+{% block content %}
+    
+<div class="container">
+    <h2 style="font-weight: 400;">Plastik kartlar</h2>
+    <div class="cartfilter">
+            <ul class="filterList">
+                <li data-filter="deactive" class="kredt" style="border-top-left-radius: 24px; border-bottom-left-radius: 24px;">Kredit</li>
+                <li data-filter="deactive" class="debt">Debit</li>
+                <li data-filter="deactive" class="takst">Taksit</li>
+                <li data-filter="deactive" class="transfr" style="border-top-right-radius: 24px; border-bottom-right-radius: 24px;">Köçürmələr üçün</li>
+            </ul>
+            <ul class="filterList">
+                <li data-filter="deactive" class="masterkart" style="border-top-left-radius: 24px; border-bottom-left-radius: 24px;"><img src="https://www.bankrespublika.az/site/views/site/images/icons/mastercard.svg" width="20px" height="10px">Mastercard</li>
+                <li data-filter="deactive" class="viza" style="border-top-right-radius: 24px; border-bottom-right-radius: 24px;"><img src="https://www.bankrespublika.az/site/views/site/images/icons/visa.svg" width='20px' height="10px" >Visa</li>
+            </ul>
+            <ul class="filterList">
+                <li data-filter="deactive" class="klassik" style="border-top-left-radius: 24px; border-bottom-left-radius: 24px;">Classic</li>
+                <li data-filter="deactive" class="qold">Gold</li>
+                <li data-filter="deactive" class="prem" style="border-top-right-radius: 24px; border-bottom-right-radius: 24px;">Premium</li>
+            </ul>
+            <ul class="filterList">
+                <li data-filter="deactive" class="manat" style="border-top-left-radius: 24px; border-bottom-left-radius: 24px;">₼</li>
+                <li data-filter="deactive" class="usd">$</li>
+                <li data-filter="deactive" class="eu" style="border-top-right-radius: 24px; border-bottom-right-radius: 24px;">€</li>
+            </ul>
+    </div>
+    <div style="width: 100px; ; position: relative; margin-bottom: 50px;">
+        <p id="muqayisecount"></p>
+        <div class="muqayise">
+            <a href="">Müqayisə</a>    
+        </div>
+    </div>
+    {% for cart in carts %}
+
+    <div class="cart {{cart.clas}} {{cart.type}} {{cart.comp}} {{cart.currency}}" style="position:relative;">
+        <div class="rightside">
+            <img src="{{cart.img}}" style="margin-bottom: 20px;" width="250px" height="157px" alt="">
+            {% if cart.order %}
+            <a href="/cartoffer" class="sifarisetbtn">Sifariş et</a>
+            {% endif %}
+            <a href="/plasticcart/{{cart.title}}" class="etraflibtn">Ətraflı</a>
+        </div>
+        <input type="checkbox" style="width: 20px; height:20px; position: absolute; right: 20px;">
+        <div class="leftside">
+            <div class="leftsideup">
+                <a href="/plasticcart/{{cart.title}}">{{cart.title}}<i class="fa-solid fa-wifi" style="color:#3939ff; font-size: 20px;"></i></a>
+            </div>
+            {% if cart.desc %}
+            <p style="width: 70%;">{{cart.desc}}</p>
+            {% endif %}
+            <div class="row" style="margin-top: 30px;">
+                {%if cart.istifademuddeti%}
+                <div class="col-3">
+                    <h6>İstifadə müddəti</h6>
+                    <p class="text-muted" >{{cart.istifademuddeti}}</p>
+                </div>
+                {% endif %}
+                {%if cart.qaliquzrefaiz%}
+                <div class="col-3">
+                    <h6>Qalıq üzrə faiz AZN</h6>
+                    <p class="text-muted" >{{cart.qaliquzrefaiz}}</p>
+                </div>
+                {% endif %}
+                {%if cart.valyuta%}
+                <div class="col-3">
+                    <h6>Valyuta</h6>
+                    <p class="text-muted" >{{cart.valyuta}}</p>
+                </div>
+                {% endif %}
+                {%if cart.kreditxetti%}
+                <div class="col-3">
+                    <h6>Kredit xətti</h6>
+                    <p class="text-muted" >{{cart.kreditxetti}}</p>
+                </div>
+                {% endif %}
+                {%if cart.qiymet_1%}
+                <div class="col-3">
+                    <h6>Qiymət</h6>
+                    <p class="text-muted" >{{cart.qiymet_1}}</p>
+                </div>
+                {% endif %}
+                {%if cart.qiymet_2%}
+                <div class="col-3">
+                    <h6>Qiymət</h6>
+                    <p class="text-muted" >{{cart.qiymet_2}}</p>
+                </div>
+                {% endif %}
+                {%if cart.qiymet_3%}
+                <div class="col-3">
+                    <h6>Qiymət</h6>
+                    <p class="text-muted" >{{cart.qiymet_3}}</p>
+                </div>
+                {% endif %}
+                {%if cart.ilkinmedaxil_1%}
+                <div class="col-3">
+                    <h6>İlkin mədaxil</h6>
+                    <p class="text-muted" >{{cart.ilkinmedaxil_1}}</p>
+                </div>
+                {% endif %}
+                {%if cart.ilkinmedaxil_2%}
+                <div class="col-3">
+                    <h6>İlkin mədaxil</h6>
+                    <p class="text-muted" >{{cart.ilkinmedaxil_2}}</p>
+                </div>
+                {% endif %}
+                {%if cart.yasheddi%}
+                <div class="col-3">
+                    <h6>Yaş həddi</h6>
+                    <p class="text-muted" >{{cart.yasheddi}}</p>
+                </div>
+                {% endif %}
+                {%if cart.buraxilmaformasi%}
+                <div class="col-3">
+                    <h6>Buraxılma forması</h6>
+                    <p class="text-muted" >{{cart.buraxilmaformasi}}</p>
+                </div>
+                {% endif %}
+                {%if cart.senedler%}
+                <div class="col-3">
+                    <h6>Təqdim olunan sənədlər</h6>
+                    <p class="text-muted" >{{cart.senedler}}</p>
+                </div>
+                {% endif %}
+                {%if cart.kartinmuddeti%}
+                <div class="col-3">
+                    <h6>Kartın müddəti</h6>
+                    <p class="text-muted" >{{cart.kartinmuddeti}}</p>
+                </div>
+                {% endif %}
+                {%if cart.buraxilmahaqqi_1%}
+                <div class="col-3">
+                    <h6>Buraxılma haqqı</h6>
+                    <p class="text-muted" >{{cart.buraxilmahaqqi_1}}</p>
+                </div>
+                {% endif %}
+                {%if cart.buraxilmahaqqi_2%}
+                <div class="col-3">
+                    <h6>Buraxılma haqqı</h6>
+                    <p class="text-muted" >{{cart.buraxilmahaqqi_2}}</p>
+                </div>
+                {% endif %}
+                {%if cart.balansnovleri%}
+                <div class="col-3">
+                    <h6>Balans növləri</h6>
+                    <p class="text-muted" >{{cart.balansnovleri}}</p>
+                </div>
+                {% endif %}
+                {%if cart.valyulatar%}
+                <div class="col-3">
+                    <h6>Valyutalar</h6>
+                    <p class="text-muted" >{{cart.valyulatar}}</p>
+                </div>
+                {% endif %}
+                {%if cart.balansinartirilmasi%}
+                <div class="col-3">
+                    <h6>Balansın artırılması</h6>
+                    <p class="text-muted" >{{cart.balansinartirilmasi}}</p>
+                </div>
+                {% endif %}
+                {%if cart.naglasdirma%}
+                <div class="col-3">
+                    <h6>Nağlaşdırma (Bankın ATM-lərində)</h6>
+                    <p class="text-muted" >{{cart.naglasdirma}}</p>
+                </div>
+                {% endif %}
+                {%if cart.vipzalistifade%}
+                <div class="col-3">
+                    <h6>VİP zalların istifadəsi</h6>
+                    <p class="text-muted" >{{cart.vipzalistifade}}</p>
+                </div>
+                {% endif %}
+                {%if cart.grupkecis%}
+                <div class="col-3">
+                    <h6>Grup şəklində keçid imkanı</h6>
+                    <p class="text-muted" >{{cart.grupkecis}}</p>
+                </div>
+                {% endif %}
+                {%if cart.vipzalbiristifade%}
+                <div class="col-3">
+                    <h6>VİP-zalın bir dəfəlik istifadə</h6>
+                    <p class="text-muted" >{{cart.vipzalbiristifade}}</p>
+                </div>
+                {% endif %}
+                {%if cart.buraxilmaqiymeti%}
+                <div class="col-3">
+                    <h6>Buraxılma qiyməti</h6>
+                    <p class="text-muted" >{{cart.buraxilmaqiymeti}}</p>
+                </div>
+                {% endif %}
+    
+                
+
+            </div>
+        </div>
+    </div> 
+    {% endfor %}
+</div>
+<script src="{{ url_for('static', filename='js/plasticcarts.js') }}"></script>
+{% endblock %}
+{% block js %}
+    
+{% endblock %}
+    

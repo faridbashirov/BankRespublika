@@ -1,0 +1,117 @@
+{%extends "base.html"%}
+{%block css%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/sifaris.css') }}" />
+{%endblock%}
+{%block content%}
+<div class="body">
+    <h3 style="    position: absolute;top: 50px;left: 83px;">Kartın onlayn uzadılması</h3>
+    <div class="main">
+        <form method="POST">
+            {{form.csrf_token}}
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="">Kartın son 8 rəqəmi:</label>
+                    {{form.reqem(class_="form-control rounded-pill")}}
+                    {% for error in form.reqem.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+
+                </div>
+                <div style="position:relative;" class="col-md-4 ">
+                    <label for="">Şəxsiyyəti təsdiq edən sənəd:</label>
+                    <div class="rounded-pill c">
+                        {{form.seriya(class_="form-checkbox rounded-pill seriya")}}
+                        {{form.sened(class_="form-control rounded-pill sened")}}
+                    </div>
+
+
+
+                </div>
+                <div class="col-md-4">
+                    <label for="">Mobil nomreniz</label>
+                    <div class="rounded-pill c">
+                        <span style=" width: 12%;
+                margin-left: 10px;">+994</span>
+                        {{form.operator(class_="form-checkbox rounded-pill seriya")}}
+                        {{form.nomre(class_="form-control rounded-pill sened")}}
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-4">
+
+                    <label for="">Sifariş növü</label>
+                    {%for  check in form.checkbox %}
+
+                    <div class="rounded-pill c justify-content-between px-4 mt-3">
+                        <div style="display: flex;" class="align-items-center">
+
+                            {{check}}
+                            {{check.label}}
+
+
+                        </div>
+
+                        {% if f[loop.index0][0]=="value"%}
+                        <span>10 ₼</span>
+                        {%else%}
+                        <span>0 ₼ </span>
+                        {%endif%}
+
+
+
+
+                    </div>
+
+                    {%endfor%}
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label for="">Kart götürüləcək filial</label>
+                    {{form.filial(class_="form-select rounded-pill")}}
+
+
+
+                </div>
+
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-2">
+
+                    <label for="">Sifaris novu</label>
+
+
+                    {{form.capthca(  class_="form-control rounded-pill mt-2 capc")}}
+                </div>
+                <div class="col-md-2">
+
+                    <div class="captcha">
+                        <span id="captcha"></span>
+                        <button class="reload-btn ms-4"><i style="font-size:13px;" class="fas fa-redo-alt"></i></button>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div class=" row mt-4 d-flex justify-content-center">
+                <button style="    width: 11%;
+    border-radius: 31px;
+    background-color: #475ed0;
+    box-shadow: 0 6px 8px 0 rgb(71 94 208 / 40%);
+    outline: none;
+    border: 0;
+    height: 51px;" type="submit" class="btn btn-primary">Göndər</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+{%endblock%}
+{%block js%}
+<script src="{{ url_for('static', filename='js/sifaris.js') }}"></script>
+{%endblock%}

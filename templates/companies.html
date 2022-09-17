@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+{% block css %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/companies.css') }}"/>
+
+{% endblock %}
+ {% block content %}
+ <div class="container">
+    <h2>Kampaniyalar</h2>
+    <div class="clientselector">
+        <button id="ferdiclient" type="button"  style="border-bottom: 2px solid #3939ff;" >Fərdi müştərilər üçün</button>
+        <button id="biznesclient" type="button">Korporativ müştərilər üçün</button>
+    </div>
+    {% for companie in companies %}
+        <div class="card mb-3 {{companie.client_type}}" style="max-width: 100%; ">
+            <div class="row g-0">
+            <div class="col-3">
+                <img src={{companie.caps}}  class="img-fluid" style="width: 250px; padding:10px; border-radius: 7%; "  alt="...">
+            </div>
+            <div class="col-9">
+                <div class="card-body">
+                <a href="/companie/{{companie.title}}"><h4 class="card-title">{{companie.title}}</h4></a>
+                <b><h6 style="margin-top: 4%;">Kampaniya <span class="text-primary">{{companie.first_date}}</span>-ci il tarixindən <span class="text-primary">{{companie.last_date}}</span>-ci il tarixinədək aktivdir.</h6></b>
+                <p class="card-text">{{companie.spot}}</p>
+                <p style="position: absolute; right: 1%; top: 3%;"><small class="text-muted">{{companie.published_date}}</small></p>
+                </div>
+            </div>
+            </div>
+        </div>
+    {% endfor %}    
+</div>
+<script src="{{ url_for('static', filename='js/companies.js') }}"></script>
+
+ {% endblock %}
+ {% block js %}
+
+ {% endblock %}

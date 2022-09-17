@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/plasticcart.css') }}"/>
+
+{% endblock %}
+{% block content %}
+
+<div class="carttitle">
+	<div class="kontent">
+	<div class="right">
+		<img src="{{cart.img}}" width="350px" height="219px" alt="">
+		{% if cart.order %}
+		<a href="/cartoffer" class="sifarisetbtn">Sifariş et</a>
+		{% endif %}
+	</div>
+	<div class="left">
+		<h3>{{cart.title}}</h3>
+		{% if cart.desc %}
+		<p>{{cart.desc}}</p>
+		{% endif %}
+		<div class="row">
+			{%if cart.istifademuddeti%}
+			<div class="col-3">
+				<h6>İstifadə müddəti</h6>
+				<p>{{cart.istifademuddeti}}</p>
+			</div>
+			{% endif %}
+			{%if cart.qaliquzrefaiz%}
+			<div class="col-3">
+				<h6>Qalıq üzrə faiz AZN</h6>
+				<p>{{cart.qaliquzrefaiz}}</p>
+			</div>
+			{% endif %}
+			{%if cart.valyuta%}
+			<div class="col-3">
+				<h6>Valyuta</h6>
+				<p>{{cart.valyuta}}</p>
+			</div>
+			{% endif %}
+			{%if cart.kreditxetti%}
+			<div class="col-3">
+				<h6>Kredit xətti</h6>
+				<p>{{cart.kreditxetti}}</p>
+			</div>
+			{% endif %}
+			{%if cart.qiymet_1%}
+			<div class="col-3">
+				<h6>Qiymət</h6>
+				<p>{{cart.qiymet_1}}</p>
+			</div>
+			{% endif %}
+			{%if cart.qiymet_2%}
+			<div class="col-3">
+				<h6>Qiymət</h6>
+				<p>{{cart.qiymet_2}}</p>
+			</div>
+			{% endif %}
+			{%if cart.qiymet_3%}
+			<div class="col-3">
+				<h6>Qiymət</h6>
+				<p>{{cart.qiymet_3}}</p>
+			</div>
+			{% endif %}
+			{%if cart.ilkinmedaxil_1%}
+			<div class="col-3">
+				<h6>İlkin mədaxil</h6>
+				<p>{{cart.ilkinmedaxil_1}}</p>
+			</div>
+			{% endif %}
+			{%if cart.ilkinmedaxil_2%}
+			<div class="col-3">
+				<h6>İlkin mədaxil</h6>
+				<p>{{cart.ilkinmedaxil_2}}</p>
+			</div>
+			{% endif %}
+			{%if cart.yasheddi%}
+			<div class="col-3">
+				<h6>Yaş həddi</h6>
+				<p>{{cart.yasheddi}}</p>
+			</div>
+			{% endif %}
+			{%if cart.buraxilmaformasi%}
+			<div class="col-3">
+				<h6>Buraxılma forması</h6>
+				<p>{{cart.buraxilmaformasi}}</p>
+			</div>
+			{% endif %}
+			{%if cart.senedler%}
+			<div class="col-3">
+				<h6>Təqdim olunan sənədlər</h6>
+				<p>{{cart.senedler}}</p>
+			</div>
+			{% endif %}
+			{%if cart.kartinmuddeti%}
+			<div class="col-3">
+				<h6>Kartın müddəti</h6>
+				<p>{{cart.kartinmuddeti}}</p>
+			</div>
+			{% endif %}
+			{%if cart.buraxilmahaqqi_1%}
+			<div class="col-3">
+				<h6>Buraxılma haqqı</h6>
+				<p>{{cart.buraxilmahaqqi_1}}</p>
+			</div>
+			{% endif %}
+			{%if cart.buraxilmahaqqi_2%}
+			<div class="col-3">
+				<h6>Buraxılma haqqı</h6>
+				<p>{{cart.buraxilmahaqqi_2}}</p>
+			</div>
+			{% endif %}
+			{%if cart.balansnovleri%}
+			<div class="col-3">
+				<h6>Balans növləri</h6>
+				<p>{{cart.balansnovleri}}</p>
+			</div>
+			{% endif %}
+			{%if cart.valyulatar%}
+			<div class="col-3">
+				<h6>Valyutalar</h6>
+				<p>{{cart.valyulatar}}</p>
+			</div>
+			{% endif %}
+			{%if cart.balansinartirilmasi%}
+			<div class="col-3">
+				<h6>Balansın artırılması</h6>
+				<p>{{cart.balansinartirilmasi}}</p>
+			</div>
+			{% endif %}
+			{%if cart.naglasdirma%}
+			<div class="col-3">
+				<h6>Nağlaşdırma (Bankın ATM-lərində)</h6>
+				<p>{{cart.naglasdirma}}</p>
+			</div>
+			{% endif %}
+			{%if cart.vipzalistifade%}
+			<div class="col-3">
+				<h6>VİP zalların istifadəsi</h6>
+				<p>{{cart.vipzalistifade}}</p>
+			</div>
+			{% endif %}
+			{%if cart.grupkecis%}
+			<div class="col-3">
+				<h6>Grup şəklində keçid imkanı</h6>
+				<p>{{cart.grupkecis}}</p>
+			</div>
+			{% endif %}
+			{%if cart.vipzalbiristifade%}
+			<div class="col-3">
+				<h6>VİP-zalın bir dəfəlik istifadə</h6>
+				<p>{{cart.vipzalbiristifade}}</p>
+			</div>
+			{% endif %}
+			{%if cart.buraxilmaqiymeti%}
+			<div class="col-3">
+				<h6>Buraxılma qiyməti</h6>
+				<p>{{cart.buraxilmaqiymeti}}</p>
+			</div>
+			{% endif %}
+		</div>
+		</div>	
+	</div>
+</div>
+
+{{cart.detail | safe}}
+
+ {% endblock %}
+ {% block js %}
+
+ {% endblock %}

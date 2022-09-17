@@ -1,0 +1,88 @@
+{%extends "base.html"%}
+{%block css%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/newsdetail.css') }}" />
+{%endblock%}
+{%block content%}
+<div class="main">
+
+  {% if f.description %}
+  <h3>{{f.title}}</h3>
+  
+  {%else%}
+  <h3>{{f.title}}</h3>
+  <img src={{f.url}} alt="">
+  {%endif%}
+
+  <div class="contents">
+    <div class="firstcontent">
+      <h5>Sosial şəbəkələrdə paylaş</h5>
+      <ul>
+        <li style="background-color: #306ead;"><a href=""><i class="fa-brands fa-facebook-f"></i> </a></li>
+        <li style="background-color: #ff3d2f;"><a href=""><i class="fa-brands fa-google-plus-g"></i></a></li>
+        <li style="background-color: #00c0e7;"><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+        <li style="background-color: #296790;"><a href=""><i class="fa-brands fa-vk"></i></a></li>
+        <li style="background-color: #0097bd;"> <a href=""><i class="fa-brands fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+    <div class="contentdetail">
+      <img src={{f.url}} alt="">
+      <p>{{f.text}}</p>
+    </div>
+  </div>
+
+  <div class="newsheader d-flex align-items-center justify-content-center">
+    <h1 style="text-align: center; font-size:28px;">Xeberler</h1>
+    <h3 style="text-align:right;position:absolute;right:10px;font-size:18px;"><a href="/news">Butun xeberler</a></h3>
+  </div>
+
+
+
+
+
+  <div class="slider center">
+    {%for news in news%}
+    <div class="clip">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <div class="img">
+              <img src={{news.url}} class="img-fluid " alt="...">
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div style="padding: unset !important;" class="card-body">
+              <a href="/news/{{news.title}}">
+                <h5 style=" width: 80%;" class="card-title">{{news.title}}</h5>
+              </a>
+              {% if news.description%}
+  
+              <p style="color:gray ;  width: 90%;" class="card-text mt-2">{{news.description}}</p>
+              {%else%}
+              <p></p>
+              {% endif%}
+              <p style=" position: absolute;
+              top: 5px;
+              right: 7px;
+              font-size: 12px;
+              color: gray;
+          ">{{news.created_At}}</p>
+  
+            </div>
+          </div>
+        </div>
+  
+      </div>
+  
+  
+    </div>
+    {%endfor%}
+  </div>
+  <p style="height: 50px;"></p>
+
+</div>
+
+
+{%endblock%}
+{% block js%}
+<script src="{{ url_for('static', filename='js/news.js') }}"></script>
+{% endblock %}
